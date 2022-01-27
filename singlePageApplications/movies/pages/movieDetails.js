@@ -1,0 +1,77 @@
+import auth from "../helpers/auth.js";
+import { jsonRequest } from "../helpers/httpService.js";
+import viewFinder from "../viewFinder.js";
+
+let section = undefined;
+function setupSection(domElement) {
+
+    section = domElement;
+
+}
+
+async function getView(id) {
+
+    let movieDetail = await jsonRequest(`http://localhost:3030/data/movies/${id}`)
+    console.log(movieDetail);
+    let movieContainer = section.querySelector('#movie-details-container');
+    [...movieContainer.children].forEach(x => x.remove());
+    let movieDetails = createMovieDetails(movieDetail);
+    movieContainer.innerHTML = movieDetails;
+    
+    movieContainer.querySelectorAll('.link').forEach(e => e.addEventListener('click', viewFinder.changeViewHandler))
+    return section;
+}
+
+async function like(movieId) {
+    let movieDetail = await jsonRequest(`http://localhost:3030/data/movies/${movieId}`);
+    let userId = auth.getUserId();
+    let isOwner = userId === movieDetail._ownerId;
+    let userLikesArr = await jsonRequest(`http://localhost:3030/data/likes?where=movieId%3D%22${movieId}%22%20and%20_ownerId%3D%22${userId}%22`);
+    if(userLikesArr.length > 0  || isOwner) {
+
+    }
+    console.log(userLikesArr);
+  
+}
+
+function createMovieDetails(movie, hasLiked) {
+
+    let editButton = `<a class="btn btn-warning link" data-route="edit" data-id="${movie._id}" href="#">Edit</a>`;
+    let deleteButton = `<a class="btn btn-danger link" data-route="delete" data-id="${movie._id}" href="#">Delete</a>`;
+    let likeButton = `<a class="btn btn-primary link" data-route="like" data-id="${movie._id}" href="#">Like</a>`;
+
+    let buttons = [];
+
+    if (auth.getUserId === movie._ownerId) {
+        buttons.push(deleteButton, editButton);
+    } else {
+        buttons.push(likeButton);
+    }
+
+    let buttonSection = buttons.join('\n')
+    let elem = `
+    <div class="row bg-light text-dark">
+    <h1>Movie title: ${movie.title}</h1>
+
+    <div class="col-md-8">
+        <img class="img-thumbnail"
+            src="${movie.img}" alt="Movie">
+    </div>
+    <div class="col-md-4 text-center">
+        <h3 class="my-3 ">Movie Description</h3>
+        <p>${movie.description}</p>
+        ${buttonSection}
+        <span class="enrolled-span">Liked 1</span>
+    </div>
+</div>`;
+
+return elem;
+}
+
+let detailsMoviePage = {
+    setupSection,
+    getView,
+    like
+};
+
+export default detailsMoviePage;
