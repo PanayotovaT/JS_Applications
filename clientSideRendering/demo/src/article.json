@@ -1,0 +1,22 @@
+[
+    {
+        "title": "First Article",
+        "content": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Rerum quo facilis natus et eligendi tempora, atque perspiciatis sunt impedit aliquam perferendis facere minus tempore aliquid debitis, vitae qui consequuntur!",
+        "author": "Alexander Panayotov"
+    },
+    {
+        "title": "Second Article",
+        "content": "Molestias facere sunt, repellat tempora corrupti labore, explicabo deserunt alias voluptas reprehenderit rem quisquam et quo perspiciatis, dolor ea esse numquam distinctio?",
+        "author": "Sofia Panayotova"
+    },
+    {
+        "title": "Third Article",
+        "content": "Voluptatum quisquam fugiat deserunt ullam iusto natus, tempora dignissimos eaque necessitatibus neque minus pariatur reiciendis architecto ipsam, vero, at dolores!",
+        "author": "Filip Panayotov"
+    },
+    {
+        "title": "Fourth Article",
+        "content": "Exercitationem repellat perspiciatis, nesciunt eligendi quos aliquam quae, maiores aut consequatur placeat minus, aliquid fugit iure pariatur modi quam non ut nulla quibusdam est consectetur dignissimos voluptatibus at inventore.",
+        "author": "Teodora Panayotova"
+    }
+]
