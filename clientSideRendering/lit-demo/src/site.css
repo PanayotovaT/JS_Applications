@@ -1,0 +1,15 @@
+body {
+    max-width: 980px;
+    margin: auto;
+    text-align: center;
+}
+
+article {
+    border: 1px solid black;
+    box-shadow: 0px 2px 7px 3px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    margin: 15px;
+    border-radius: 8px;
+}
